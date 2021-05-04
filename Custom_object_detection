@@ -29,29 +29,6 @@ while 1:
             score = detection[5:]
             class_id = np.argmax(score)
             confidence = score[class_id]
-            if confidence > 0.7:
-                center_x = int(detection[0] * width)
-                center_y = int(detection[1] * hight)
-                w = int(detection[2] * width)
-                h = int(detection[3]* hight)
-                x = int(center_x - w/2)
-                y = int(center_y - h/2)
-                boxes.append([x,y,w,h])
-                confidences.append((float(confidence)))
-                class_ids.append(class_id)
-
-
-    indexes = cv2.dnn.NMSBoxes(boxes,confidences,.5,.4)
-
-    boxes =[]
-    confidences = []
-    class_ids = []
-
-    for output in layerOutputs:
-        for detection in output:
-            score = detection[5:]
-            class_id = np.argmax(score)
-            confidence = score[class_id]
             if confidence > 0.5:
                 center_x = int(detection[0] * width)
                 center_y = int(detection[1] * hight)
